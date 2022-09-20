@@ -6,36 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Challenge - DOM</title>
   </head>
+  <style>
+    body {
+      background-color: rgb(115, 197, 255);
+    }
+    .content {
+      margin: auto;
+      margin-top: 50px;
+      padding-left: 30px;
+      padding-top: 30px;
+      width: 300px;
+      min-height: 300px;
+      background-color: white;
+      border-radius: 0.5cm;
+    }
+  </style>
   <body>
     <div id="app">
-      <!-- TODO: Buatlah sebuah header dengan id todo-title -->
-      <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
-
-      <!-- Section: input -->
-      <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
-      <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
-
-      <!-- Section output -->
-      <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+      <div class="content">
+        <h3 id="todo-title">~To Do List~</h3>
+        <h4 id="todo-subtitle">Today i need to do</h4>
+        <input type="text" id="todo-input" />
+        <button id="todo-submit" onclick="fnClickHandler()">Submit</button>
+        <ul id="todo-output"></ul>
+      </div>
     </div>
 
-    <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
     <script>
-      // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
       let button;
       let input;
       let output;
-
-      // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
-      // Fungsi yang digunakan untuk menambahkan tulisan
-      // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
-
-      // TODO: register event onclick / addEventListener untuk button
-      // akan menjalankan fungsi fnClickHandler
-      
-      // TODO: register event onkeypress / addEventListener untuk input
-      // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      document.getElementById("todo-title").innerHTML = "To Do List";
+      document.getElementById("todo-subtitle").innerHTML =
+        "- Today I need to -";
+      function fnClickHandler(toDoItem) {
+        input = document.getElementById("todo-input").value;
+        output = document.createElement("li");
+        const textnode = document.createTextNode(input);
+        output.appendChild(textnode);
+        document.getElementById("todo-output").appendChild(output);
+      }
+      button = document.getElementById("todo-input");
+      button.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          document.getElementById("todo-submit").click();
+        }
+      });
     </script>
   </body>
 </html>
